@@ -13,9 +13,9 @@ Recomanded VPN client is OpenVPN, latest version you can download here: [Communi
 ## Usage
 
 ```hcl
-module "aws-client-vpn" {
-  source                 = "./module/aws-client-vpn"
-  organization_name      = "OrganizationName"
+module "vpn-client" {
+  source  = "babicamir/vpn-client/aws"
+  version = "0.0.2"
   project-name           = "MyProject"
   aws-vpn-client-list    = ["root", "user-1", "user2"]
   vpc_id                 = aws_vpc.vpc.id
