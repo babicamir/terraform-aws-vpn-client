@@ -15,12 +15,13 @@ Recomanded VPN client is OpenVPN, latest version you can download here: [Communi
 ```hcl
 module "vpn-client" {
   source  = "babicamir/vpn-client/aws"
-  version = "0.0.2"
+  version = "{version}"
+  organization_name      = "OrganizationName"
   project-name           = "MyProject"
   aws-vpn-client-list    = ["root", "user-1", "user2"]
-  vpc_id                 = aws_vpc.vpc.id
-  subnet_id              = aws_subnet.subnet.id
-  client_cidr_block      = "172.0.252.0/22" # It must be different from the primary VPC CIDR
+  vpc_id                 = "{VPC id}"
+  subnet_id              = "{subnet id}"
+  client_cidr_block      = "172.0.0.0/22" # It must be different from the primary VPC CIDR
   split_tunnel           = "true" # or false
   vpn_inactive_period = "300" # seconds
   session_timeout_hours  = "8"
