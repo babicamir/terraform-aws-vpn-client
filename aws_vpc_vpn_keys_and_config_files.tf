@@ -48,8 +48,8 @@ resource "aws_s3_object" "vpn-config-file" {
   content_base64 = base64encode(<<-EOT
 client
 dev tun
-proto udp
-remote ${aws_ec2_client_vpn_endpoint.vpn-client.id}.prod.clientvpn.${data.aws_region.current.name}.amazonaws.com 443
+proto ${aws_ec2_client_vpn_endpoint.vpn-client.transport_protocol}
+remote ${aws_ec2_client_vpn_endpoint.vpn-client.id}.prod.clientvpn.${data.aws_region.current.name}.amazonaws.com ${aws_ec2_client_vpn_endpoint.vpn-client.vpn_port}
 remote-random-hostname
 resolv-retry infinite
 nobind
