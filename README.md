@@ -30,7 +30,7 @@ module "vpn-client" {
 ```
 ### Creating additional client or user *.ovpn configuration  
 
-To generate additional *.ovpn configuration for new user, you just need add new value in `aws-vpn-client-list    = ["root", "user-1", "new-user????"]` input variable.
+To generate additional *.ovpn configuration for new user, you just need add new value in `aws-vpn-client-list    = ["root", "user-1", "new-user????"]` input variable. Make sure to keep the root user as it is used to create aws_ec2_client_vpn_endpoint resource.
 
 
 
@@ -55,7 +55,7 @@ To generate additional *.ovpn configuration for new user, you just need add new 
 |------|-------------|------|---------|:--------:|
 | organization_name | Organization name!? | `string` | `[]` | yes |
 | project-name | Project name!? | `string` | `[]` | yes |
-| aws-vpn-client-list | VPN client list!? | `list(string)` | `[]` | yes |
+| aws-vpn-client-list | VPN client list!? | `set(string)` | `[]` | yes |
 | vpc_id | VPC ID | `string` | `[]` | yes |
 | subnet_id | Subnet for client vpn network association | `string` | `[]` | yes |
 | client_cidr_block | AWS VPN client cidr block. It must be different from the primary VPC CIDR | `string` | `[]` | yes |
