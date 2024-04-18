@@ -47,7 +47,7 @@ To generate additional *.ovpn configuration for new user, you just need add new 
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.4.0 |
-| <a name="provider_tls"></a> [aws](#provider\_tls) | >= 3.1.0 |
+| <a name="provider_tls"></a> [tls](#provider\_tls) | >= 3.1.0 |
 
 
 ## Inputs
