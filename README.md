@@ -38,16 +38,16 @@ To generate additional *.ovpn configuration for new user, you just need add new 
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.7 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.4.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.8.2 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.46.0 |
 
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.4.0 |
-| <a name="provider_tls"></a> [tls](#provider\_tls) | >= 3.1.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.46.0 |
+| <a name="provider_tls"></a> [tls](#provider\_tls) | >= 4.0.5 |
 
 
 ## Inputs
