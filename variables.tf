@@ -6,9 +6,13 @@ variable "project-name" {
   description = "Project name!?"
   type        = string
 }
+variable "environment" {
+  description = "Environment name!?"
+  type        = string
+}
 variable "aws-vpn-client-list" {
   description = "VPN client list!?"
-  type = list(string)
+  type        = list(string)
 }
 variable "vpc_id" {
   description = "VPC ID"
@@ -16,11 +20,11 @@ variable "vpc_id" {
 }
 variable "subnet_id" {
   description = "Subnet for client vpn network association"
-  type       = string
+  type        = string
 }
 variable "client_cidr_block" {
   description = "AWS VPN client cidr block"
-  type       = string
+  type        = string
 }
 variable "split_tunnel" {
   description = "Split tunnel traffic"

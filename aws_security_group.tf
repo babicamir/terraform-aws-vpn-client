@@ -1,7 +1,7 @@
 # AWS security group
 resource "aws_security_group" "vpn" {
-  name        = "${var.project-name}-${terraform.workspace}-vpn-security-group"
-  description = "${var.project-name}-${terraform.workspace}-vpn-security-group"
+  name        = "${var.project-name}-${var.environment}-vpn-security-group"
+  description = "${var.project-name}-${var.environment}-vpn-security-group"
   vpc_id      = var.vpc_id
   ingress {
     from_port   = 443
@@ -16,6 +16,6 @@ resource "aws_security_group" "vpn" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    Name = "${var.project-name}-${terraform.workspace}-vpn-security-group"
+    Name = "${var.project-name}-${var.environment}-vpn-security-group"
   }
 }

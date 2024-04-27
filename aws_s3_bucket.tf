@@ -1,9 +1,9 @@
 # AWS S3 bucket for VPN config files
 resource "aws_s3_bucket" "vpn-config-files" {
-  bucket        = "${lower(var.project-name)}-${terraform.workspace}-vpn-config-files"
+  bucket        = "${lower(var.project-name)}-${var.environment}-vpn-config-files"
   force_destroy = true
   tags = {
-    Name         = "${lower(var.project-name)}-${terraform.workspace}-vpn-config-files"
+    Name         = "${lower(var.project-name)}-${var.environment}-vpn-config-files"
     CostType     = "AlwaysCreated"
     BackupPolicy = "n/a"
   }
@@ -34,8 +34,8 @@ data "aws_iam_policy_document" "vpn-config-files" {
     actions = ["s3:*"]
     effect  = "Deny"
     resources = [
-      "arn:aws:s3:::${lower(var.project-name)}-${terraform.workspace}-vpn-config-files",
-      "arn:aws:s3:::${lower(var.project-name)}-${terraform.workspace}-vpn-config-files/*"
+      "arn:aws:s3:::${lower(var.project-name)}-${var.environment}-vpn-config-files",
+      "arn:aws:s3:::${lower(var.project-name)}-${var.environment}-vpn-config-files/*"
     ]
     condition {
       test     = "Bool"
