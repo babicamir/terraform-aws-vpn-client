@@ -13,7 +13,7 @@ Recomanded VPN clients:
 - [OpenVPN -Community Downloads](https://openvpn.net/community-downloads/)
 
 ### How to add a new user config or remove an existing user config
-To add new user config, new value within input variable `aws-vpn-client-list` should be added (example: `aws-vpn-client-list    = ["root", "user-1", "user2", "new-user"]`)
+To add new user config, new value within input variable `aws-vpn-client-list` should be added (example: `aws-vpn-client-list    = ["root", "user-1", "user2", "new-user"]`).
 
 To remove existing user config, value from input variable `aws-vpn-client-list` should be removed (example: `aws-vpn-client-list    = ["root", "user-1"]`). NOTE: Do not delete "root" user!!
 
