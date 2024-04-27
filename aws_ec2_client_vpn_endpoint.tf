@@ -10,7 +10,7 @@ resource "aws_ec2_client_vpn_endpoint" "vpn-client" {
   split_tunnel = var.split_tunnel
   authentication_options {
     type                       = "certificate-authentication"
-    root_certificate_chain_arn = aws_acm_certificate.client[0].arn
+    root_certificate_chain_arn = aws_acm_certificate.client["root"].arn
   }
   connection_log_options {
     enabled               = true
