@@ -3,11 +3,18 @@ This terraform module creates all necessary AWS services, certificates, keys, an
 
 With this module, you avoid the need to manually generate ca, server, client keys, and certificates, everything is automated. After generating all required keys and certificates, they are stored in AWS ACM and AWS SSM Parameter store.
 
-Also, *.ovpn configurations files for VPN users are created and stored in an S3 bucket. These *.ovpn configurations files are ready to be used without any customization (adding client certificate and key), you just need to download one of generated *.ovpn files, import it into a VPN client, and connect to the targeted VPC network.
+Also, *.ovpn configurations files for VPN users are created and stored in an S3 bucket ({project-name}-{environment}-vpn-config-files). These *.ovpn configurations files are ready to be used without any customization (adding client certificate and key), you just need to download one of generated *.ovpn files, import it into a VPN client, and connect to the targeted VPC network.
 
 This terraform module is for AWS VPC Client VPN mutual authentication only.
 
-Recomanded VPN client is OpenVPN, latest version you can download here: [Community Downloads](https://openvpn.net/community-downloads/).
+Recomanded VPN clients:
+
+- [AWS Client VPN - Downloads](https://aws.amazon.com/vpn/client-vpn-download//)
+- [OpenVPN -Community Downloads](https://openvpn.net/community-downloads/)
+
+### How to add a new user config or remove an existing user config
+To add new user config, new value within input variable `aws-vpn-client-list` should be added (example: `aws-vpn-client-list    = ["root", "user-1", "user2", "new-user"]` )
+To remove existing user config, value from input variable `aws-vpn-client-list` should be removed (example: `aws-vpn-client-list    = ["root", "user-1"]` ). NOTE: Do not delete "root" user!!
 
 
 ## Usage
@@ -29,7 +36,7 @@ module "vpn-client" {
   session_timeout_hours  = "8"
   logs_retention_in_days = "7"
   # List of users to be created
-  aws-vpn-client-list    = ["root", "user-1", "user2"]
+  aws-vpn-client-list    = ["root", "user-1", "user2"] #Do not delete "root" user!
 }
 ```
 ### Creating additional client or user *.ovpn configuration  
