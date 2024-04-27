@@ -18,14 +18,18 @@ module "vpn-client" {
   version = "{version}"
   organization_name      = "OrganizationName"
   project-name           = "MyProject"
-  aws-vpn-client-list    = ["root", "user-1", "user2"]
+  environment            = "default"
+  # Network information
   vpc_id                 = "{VPC id}"
   subnet_id              = "{subnet id}"
   client_cidr_block      = "172.0.0.0/22" # It must be different from the primary VPC CIDR
+  # VPN config options
   split_tunnel           = "true" # or false
   vpn_inactive_period = "300" # seconds
   session_timeout_hours  = "8"
   logs_retention_in_days = "7"
+  # List of users to be created
+  aws-vpn-client-list    = ["root", "user-1", "user2"]
 }
 ```
 ### Creating additional client or user *.ovpn configuration  

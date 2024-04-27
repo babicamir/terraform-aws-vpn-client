@@ -6,9 +6,13 @@ variable "project-name" {
   description = "Project name!?"
   type        = string
 }
+variable "environment" {
+  description = "Environment name!?"
+  type        = string
+}
 variable "aws-vpn-client-list" {
   description = "VPN client list!?"
-  type        = set(string)
+  type        = list(string)
 }
 variable "vpc_id" {
   description = "VPC ID"

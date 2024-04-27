@@ -1,6 +1,6 @@
 # AWS vpn client endpoint
 resource "aws_ec2_client_vpn_endpoint" "vpn-client" {
-  description            = "${var.project-name}-${terraform.workspace}-vpn-client"
+  description            = "${var.project-name}-${var.environment}-vpn-client"
   server_certificate_arn = aws_acm_certificate.server.arn
   vpc_id                 = var.vpc_id
   security_group_ids     = [aws_security_group.vpn.id]
@@ -18,9 +18,9 @@ resource "aws_ec2_client_vpn_endpoint" "vpn-client" {
     cloudwatch_log_stream = aws_cloudwatch_log_stream.vpn-logs-stream.name
   }
   tags = {
-    Name        = "${var.project-name}-${terraform.workspace}-vpn-client"
+    Name        = "${var.project-name}-${var.environment}-vpn-client"
     Terraform   = "true"
-    Environment = "${terraform.workspace}"
+    Environment = "${var.environment}"
   }
 }
 resource "aws_ec2_client_vpn_network_association" "vpn-client" {
