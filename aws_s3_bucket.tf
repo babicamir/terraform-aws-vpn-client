@@ -2,11 +2,11 @@
 resource "aws_s3_bucket" "vpn-config-files" {
   bucket        = "${lower(var.project-name)}-${var.environment}-vpn-config-files"
   force_destroy = true
-  tags = {
-    Name         = "${lower(var.project-name)}-${var.environment}-vpn-config-files"
-    CostType     = "AlwaysCreated"
-    BackupPolicy = "n/a"
-  }
+  tags = (merge(var.tags,
+    { Name = "${lower(var.project-name)}-${var.environment}-vpn-config-files" },
+    { CostType = "AlwaysCreated" },
+    { BackupPolicy = "n/a" },
+  ))
 }
 resource "aws_s3_bucket_public_access_block" "vpn-config-files" {
   bucket                  = aws_s3_bucket.vpn-config-files.id

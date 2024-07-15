@@ -3,10 +3,7 @@ resource "aws_acm_certificate" "server" {
   private_key       = tls_private_key.server.private_key_pem
   certificate_body  = tls_locally_signed_cert.server.cert_pem
   certificate_chain = tls_self_signed_cert.ca.cert_pem
-  tags = {
-    Terraform   = "true"
-    Environment = "${var.environment}"
-  }
+  tags              = merge(var.tags, )
 }
 
 # TLS certificate and key
@@ -38,18 +35,12 @@ resource "aws_ssm_parameter" "vpn_server_key" {
   description = "VPN server key"
   type        = "SecureString"
   value       = tls_private_key.server.private_key_pem
-  tags = {
-    Terraform   = "true"
-    Environment = "${var.environment}"
-  }
+  tags        = merge(var.tags, )
 }
 resource "aws_ssm_parameter" "vpn_server_cert" {
   name        = "/${var.project-name}/${var.environment}/acm/vpn/server_cert"
   description = "VPN server cert"
   type        = "SecureString"
   value       = tls_locally_signed_cert.server.cert_pem
-  tags = {
-    Terraform   = "true"
-    Environment = "${var.environment}"
-  }
+  tags        = merge(var.tags, )
 }

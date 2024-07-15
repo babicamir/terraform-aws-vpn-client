@@ -68,6 +68,7 @@ To generate additional *.ovpn configuration for new user, you just need add new 
 | organization_name | Organization name!? | `string` | `[]` | yes |
 | project-name | Project name!? | `string` | `[]` | yes |
 | project-name | Environment name!? | `string` | `[]` | yes |
+| tags | Custom, user-defined tags | `map` | `[]` | no |
 | aws-vpn-client-list | VPN client list!? | `set(string)` | `[]` | yes |
 | vpc_id | VPC ID | `string` | `[]` | yes |
 | subnet_id | Subnet for client vpn network association. It is recommended that it be a private subnet. | `string` | `[]` | yes |

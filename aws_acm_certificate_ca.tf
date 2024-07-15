@@ -22,10 +22,7 @@ resource "tls_self_signed_cert" "ca" {
 resource "aws_acm_certificate" "ca" {
   private_key      = tls_private_key.ca.private_key_pem
   certificate_body = tls_self_signed_cert.ca.cert_pem
-  tags = {
-    Terraform   = "true"
-    Environment = "${var.environment}"
-  }
+  tags             = merge(var.tags, )
 }
 
 # AWS SSM records
@@ -34,19 +31,13 @@ resource "aws_ssm_parameter" "vpn_ca_key" {
   description = "VPN CA key"
   type        = "SecureString"
   value       = tls_private_key.ca.private_key_pem
+  tags        = merge(var.tags, )
 
-  tags = {
-    Terraform   = "true"
-    Environment = "${var.environment}"
-  }
 }
 resource "aws_ssm_parameter" "vpn_ca_cert" {
   name        = "/${var.project-name}/${var.environment}/acm/vpn/ca_cert"
   description = "VPN CA cert"
   type        = "SecureString"
   value       = tls_self_signed_cert.ca.cert_pem
-  tags = {
-    Terraform   = "true"
-    Environment = "${var.environment}"
-  }
+  tags        = merge(var.tags, )
 }

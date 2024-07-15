@@ -30,11 +30,11 @@ resource "aws_acm_certificate" "client" {
   private_key       = tls_private_key.client[each.value].private_key_pem
   certificate_body  = tls_locally_signed_cert.client[each.value].cert_pem
   certificate_chain = tls_self_signed_cert.ca.cert_pem
-  tags = {
-    Tier         = "Private"
-    CostType     = "AlwaysCreated"
-    BackupPolicy = "n/a"
-  }
+  tags = (merge(var.tags,
+    { Tier = "Private" },
+    { CostType = "AlwaysCreated" },
+    { BackupPolicy = "n/a" },
+  ))
 }
 
 # AWS VPN config files generated to s3 bucket *.ovpn
@@ -80,12 +80,12 @@ resource "aws_ssm_parameter" "vpn_client_key" {
   description = "VPN ${each.value} client key"
   type        = "SecureString"
   value       = tls_private_key.client[each.value].private_key_pem
-  tags = {
-    Name         = "VPN ${each.value} client key imported in AWS ACM"
-    Tier         = "Private"
-    CostType     = "AlwaysCreated"
-    BackupPolicy = "n/a"
-  }
+  tags = (merge(var.tags,
+    { Name = "VPN ${each.value} client key imported in AWS ACM" },
+    { Tier = "Private" },
+    { CostType = "AlwaysCreated" },
+    { BackupPolicy = "n/a" },
+  ))
 }
 resource "aws_ssm_parameter" "vpn_client_cert" {
   for_each    = toset(var.aws-vpn-client-list)
@@ -93,10 +93,10 @@ resource "aws_ssm_parameter" "vpn_client_cert" {
   description = "VPN ${each.value} client cert"
   type        = "SecureString"
   value       = tls_locally_signed_cert.client[each.value].cert_pem
-  tags = {
-    Name         = "VPN ${each.value} client cert imported in AWS ACM"
-    Tier         = "Private"
-    CostType     = "AlwaysCreated"
-    BackupPolicy = "n/a"
-  }
+  tags = (merge(var.tags,
+    { Name = "VPN ${each.value} client cert imported in AWS ACM" },
+    { Tier = "Private" },
+    { CostType = "AlwaysCreated" },
+    { BackupPolicy = "n/a" },
+  ))
 }
