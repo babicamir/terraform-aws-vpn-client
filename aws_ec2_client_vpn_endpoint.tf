@@ -17,11 +17,8 @@ resource "aws_ec2_client_vpn_endpoint" "vpn-client" {
     cloudwatch_log_group  = aws_cloudwatch_log_group.vpn-logs.name
     cloudwatch_log_stream = aws_cloudwatch_log_stream.vpn-logs-stream.name
   }
-  tags = {
-    Name        = "${var.project-name}-${var.environment}-vpn-client"
-    Terraform   = "true"
-    Environment = "${var.environment}"
-  }
+  tags = merge(var.tags, )
+
 }
 resource "aws_ec2_client_vpn_network_association" "vpn-client" {
   client_vpn_endpoint_id = aws_ec2_client_vpn_endpoint.vpn-client.id

@@ -15,7 +15,7 @@ resource "aws_security_group" "vpn" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  tags = {
-    Name = "${var.project-name}-${var.environment}-vpn-security-group"
-  }
+  tags = (merge(var.tags,
+    { Name = "${var.project-name}-${var.environment}-vpn-security-group" },
+  ))
 }

@@ -10,6 +10,16 @@ variable "environment" {
   description = "Environment name!?"
   type        = string
 }
+
+variable "tags" {
+  description = "Custom, user-defined tags"
+  type        = map(any)
+  default = {
+    Terraform   = "true",
+    Environment = "production",
+  }
+}
+
 variable "aws-vpn-client-list" {
   description = "VPN client list!?"
   type        = list(string)
